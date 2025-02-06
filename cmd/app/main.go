@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"ImageWorkr/internal/app"
+)
 
 func main() {
-	fmt.Println("Hello,world")
+	app := app.New()
+	app.Run()
 }
