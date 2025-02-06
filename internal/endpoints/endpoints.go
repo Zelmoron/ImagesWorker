@@ -1,6 +1,10 @@
 package endpoints
 
-import "github.com/labstack/echo/v4"
+import (
+	"net/http"
+
+	"github.com/labstack/echo/v4"
+)
 
 type (
 	Services interface {
@@ -16,7 +20,8 @@ func New(services Services) *Endpoints {
 	}
 }
 
-func Render(c *echo.Context) error {
-	return nil
+func (e *Endpoints) Render(c echo.Context) error {
+
+	return c.Render(http.StatusOK, "hello", nil)
 
 }

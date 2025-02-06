@@ -1,0 +1,30 @@
+{{define "hello"}}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка фото</title>
+    <link href="/static/css/styles.css" rel="stylesheet" >
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="upload-container">
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">Перетащите фото сюда</div>
+            <div class="upload-subtext">или нажмите для выбора файла</div>
+            <img id="preview" class="preview-image" alt="Preview">
+        </div>
+        <div class="button-container">
+            <button class="button" id="uploadButton">Загрузить</button>
+            <button class="button cancel" id="cancelButton">Отмена</button>
+        </div>
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
+
+{{end}}
