@@ -54,7 +54,7 @@ async function uploadFile() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    image: reader.result // Отправляем base64 строку
+                    image: reader.result 
                 })
             });
 
