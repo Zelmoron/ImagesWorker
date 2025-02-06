@@ -42,25 +42,34 @@ async function uploadFile() {
         return;
     }
 
-    const formData = new FormData();
-    formData.append('image', currentFile);
+    // Читаем файл как base64
+    const reader = new FileReader();
+    reader.readAsDataURL(currentFile);
+    
+    reader.onload = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/register/image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    image: reader.result // Отправляем base64 строку
+                })
+            });
 
-    try {
-        const response = await fetch('http://localhost:8080/register/image', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            showMessage('Файл успешно загружен!');
-            setTimeout(resetUpload, 3000);
-        } else {
-            throw new Error('Ошибка загрузки');
+            if (response.ok) {
+                showMessage('Файл успешно загружен!');
+                setTimeout(resetUpload, 3000);
+            } else {
+                throw new Error('Ошибка загрузки');
+            }
+        } catch (error) {
+            showMessage('Ошибка при загрузке файла: ' + error.message, true);
         }
-    } catch (error) {
-        showMessage('Ошибка при загрузке файла: ' + error.message, true);
-    }
+    };
 }
+
 
 dropZone.addEventListener('click', () => {
     const input = document.createElement('input');

@@ -42,9 +42,11 @@ func (a *App) routers() {
 		templates: template.Must(template.ParseGlob("public/views/*.html")),
 	}
 	a.app.Renderer = t
+	a.app.Debug = true
 	a.app.Static("/static", "static")
 	a.app.Use(middleware.Logger())
 	a.app.GET("/", a.endpoints.Render)
+	a.app.POST("/register/image", a.endpoints.ImageWork)
 }
 
 func (a *App) Run() {
