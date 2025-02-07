@@ -9,6 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"github.com/disintegration/imaging"
 )
 
 type (
@@ -42,6 +44,8 @@ func (s *Services) ImageWorker(request endpoints.ImageUploadRequest) (string, er
 	}
 
 	log.Printf("Файл успешно сохранен: %s", filename)
+
+	dstImage := imaging.Blur("./static/", 0.5)
 	return filename, nil
 
 }
